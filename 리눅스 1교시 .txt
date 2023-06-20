@@ -1,0 +1,139 @@
+root@student7-virtual-machine:~/바탕화면# apt-get -y install vsftpd
+패키지 목록을 읽는 중입니다... 완료
+의존성 트리를 만드는 중입니다... 완료
+상태 정보를 읽는 중입니다... 완료        
+다음 새 패키지를 설치할 것입니다:
+  vsftpd
+0개 업그레이드, 1개 새로 설치, 0개 제거 및 9개 업그레이드 안 함.
+115 k바이트 아카이브를 받아야 합니다.
+이 작업 후 334 k바이트의 디스크 공간을 더 사용하게 됩니다.
+받기:1 http://mirror.kakao.com/ubuntu bionic/main amd64 vsftpd amd64 3.0.3-9build1 [115 kB]
+내려받기 115 k바이트, 소요시간 2초 (53.1 k바이트/초)
+패키지를 미리 설정하는 중입니다...
+Selecting previously unselected package vsftpd.
+(데이터베이스 읽는중 ...현재 203970개의 파일과 디렉터리가 설치되어 있습니다.)
+Preparing to unpack .../vsftpd_3.0.3-9build1_amd64.deb ...
+Unpacking vsftpd (3.0.3-9build1) ...
+vsftpd (3.0.3-9build1) 설정하는 중입니다 ...
+Created symlink /etc/systemd/system/multi-user.target.wants/vsftpd.service → /lib/systemd/system/vsftpd.service.
+Processing triggers for man-db (2.10.2-1) ...
+root@student7-virtual-machine:~/바탕화면# nano /etc/vsftpd.conf
+root@student7-virtual-machine:~/바탕화면# cd /srv/ftp
+root@student7-virtual-machine:/srv/ftp# ls
+root@student7-virtual-machine:/srv/ftp# mkdir pub
+root@student7-virtual-machine:/srv/ftp# ls -l
+합계 4
+drwxr-xr-x 2 root root 4096  6월 20 09:23 pub
+root@student7-virtual-machine:/srv/ftp# chmod 777 pub
+root@student7-virtual-machine:/srv/ftp# mkdir file1
+root@student7-virtual-machine:/srv/ftp# rm file1
+rm: 'file1'을(를) 제거할 수 없습니다: 디렉터리입니다
+root@student7-virtual-machine:/srv/ftp# cd pub
+root@student7-virtual-machine:/srv/ftp/pub# mkdir file1
+root@student7-virtual-machine:/srv/ftp/pub# ls -l
+합계 4
+drwxr-xr-x 2 root root 4096  6월 20 09:25 file1
+root@student7-virtual-machine:/srv/ftp/pub# chmod 777 file1
+root@student7-virtual-machine:/srv/ftp/pub# ls -l
+합계 4
+drwxrwxrwx 2 root root 4096  6월 20 09:25 file1
+root@student7-virtual-machine:/srv/ftp/pub# cp /boot/vm* file1
+root@student7-virtual-machine:/srv/ftp/pub# cd file1
+root@student7-virtual-machine:/srv/ftp/pub/file1# ls
+vmlinuz  vmlinuz-5.19.0-32-generic  vmlinuz-5.19.0-35-generic  vmlinuz.old
+root@student7-virtual-machine:/srv/ftp/pub/file1# systemctl restart vsftpd
+root@student7-virtual-machine:/srv/ftp/pub/file1# systemctl enable vsftpd
+Synchronizing state of vsftpd.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable vsftpd
+root@student7-virtual-machine:/srv/ftp/pub/file1# systemctl status vsftpd
+● vsftpd.service - vsftpd FTP server
+     Loaded: loaded (/lib/systemd/system/vsftpd.service; enabled; vendor prese>
+     Active: active (running) since Tue 2023-06-20 09:27:55 KST; 54s ago
+   Main PID: 2941 (vsftpd)
+      Tasks: 1 (limit: 4573)
+     Memory: 692.0K
+        CPU: 7ms
+     CGroup: /system.slice/vsftpd.service
+             └─2941 /usr/sbin/vsftpd /etc/vsftpd.conf
+
+ 6월 20 09:27:55 student7-virtual-machine systemd[1]: Starting vsftpd FTP serv>
+ 6월 20 09:27:55 student7-virtual-machine systemd[1]: Started vsftpd FTP serve>
+root@student7-virtual-machine:/srv/ftp/pub/file1# ufw allow ftp
+규칙이 추가되었습니다
+규칙이 추가되었습니다 (v6)
+root@student7-virtual-machine:/srv/ftp/pub/file1# systemsctl stop ufw
+명령어 'systemsctl' 을(를) 찾을 수 없습니다. 다음 명령어로 시도하시겠습니까:
+root@student7-virtual-machine:/srv/ftp/pub/file1# systemctl stop ufw
+root@student7-virtual-machine:/srv/ftp/pub/file1# ^C
+root@student7-virtual-machine:/srv/ftp/pub/file1# 
+
+쿠분투 1교시
+root@student7-virtual-machine:~/바탕화면# apt-get -y install vsftpd
+패키지 목록을 읽는 중입니다... 완료
+의존성 트리를 만드는 중입니다... 완료
+상태 정보를 읽는 중입니다... 완료        
+다음 새 패키지를 설치할 것입니다:
+  vsftpd
+0개 업그레이드, 1개 새로 설치, 0개 제거 및 9개 업그레이드 안 함.
+115 k바이트 아카이브를 받아야 합니다.
+이 작업 후 334 k바이트의 디스크 공간을 더 사용하게 됩니다.
+받기:1 http://mirror.kakao.com/ubuntu bionic/main amd64 vsftpd amd64 3.0.3-9build1 [115 kB]
+내려받기 115 k바이트, 소요시간 2초 (53.1 k바이트/초)
+패키지를 미리 설정하는 중입니다...
+Selecting previously unselected package vsftpd.
+(데이터베이스 읽는중 ...현재 203970개의 파일과 디렉터리가 설치되어 있습니다.)
+Preparing to unpack .../vsftpd_3.0.3-9build1_amd64.deb ...
+Unpacking vsftpd (3.0.3-9build1) ...
+vsftpd (3.0.3-9build1) 설정하는 중입니다 ...
+Created symlink /etc/systemd/system/multi-user.target.wants/vsftpd.service → /lib/systemd/system/vsftpd.service.
+Processing triggers for man-db (2.10.2-1) ...
+root@student7-virtual-machine:~/바탕화면# nano /etc/vsftpd.conf
+root@student7-virtual-machine:~/바탕화면# cd /srv/ftp
+root@student7-virtual-machine:/srv/ftp# ls
+root@student7-virtual-machine:/srv/ftp# mkdir pub
+root@student7-virtual-machine:/srv/ftp# ls -l
+합계 4
+drwxr-xr-x 2 root root 4096  6월 20 09:23 pub
+root@student7-virtual-machine:/srv/ftp# chmod 777 pub
+root@student7-virtual-machine:/srv/ftp# mkdir file1
+root@student7-virtual-machine:/srv/ftp# rm file1
+rm: 'file1'을(를) 제거할 수 없습니다: 디렉터리입니다
+root@student7-virtual-machine:/srv/ftp# cd pub
+root@student7-virtual-machine:/srv/ftp/pub# mkdir file1
+root@student7-virtual-machine:/srv/ftp/pub# ls -l
+합계 4
+drwxr-xr-x 2 root root 4096  6월 20 09:25 file1
+root@student7-virtual-machine:/srv/ftp/pub# chmod 777 file1
+root@student7-virtual-machine:/srv/ftp/pub# ls -l
+합계 4
+drwxrwxrwx 2 root root 4096  6월 20 09:25 file1
+root@student7-virtual-machine:/srv/ftp/pub# cp /boot/vm* file1
+root@student7-virtual-machine:/srv/ftp/pub# cd file1
+root@student7-virtual-machine:/srv/ftp/pub/file1# ls
+vmlinuz  vmlinuz-5.19.0-32-generic  vmlinuz-5.19.0-35-generic  vmlinuz.old
+root@student7-virtual-machine:/srv/ftp/pub/file1# systemctl restart vsftpd
+root@student7-virtual-machine:/srv/ftp/pub/file1# systemctl enable vsftpd
+Synchronizing state of vsftpd.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable vsftpd
+root@student7-virtual-machine:/srv/ftp/pub/file1# systemctl status vsftpd
+● vsftpd.service - vsftpd FTP server
+     Loaded: loaded (/lib/systemd/system/vsftpd.service; enabled; vendor prese>
+     Active: active (running) since Tue 2023-06-20 09:27:55 KST; 54s ago
+   Main PID: 2941 (vsftpd)
+      Tasks: 1 (limit: 4573)
+     Memory: 692.0K
+        CPU: 7ms
+     CGroup: /system.slice/vsftpd.service
+             └─2941 /usr/sbin/vsftpd /etc/vsftpd.conf
+
+ 6월 20 09:27:55 student7-virtual-machine systemd[1]: Starting vsftpd FTP serv>
+ 6월 20 09:27:55 student7-virtual-machine systemd[1]: Started vsftpd FTP serve>
+root@student7-virtual-machine:/srv/ftp/pub/file1# ufw allow ftp
+규칙이 추가되었습니다
+규칙이 추가되었습니다 (v6)
+root@student7-virtual-machine:/srv/ftp/pub/file1# systemsctl stop ufw
+명령어 'systemsctl' 을(를) 찾을 수 없습니다. 다음 명령어로 시도하시겠습니까:
+root@student7-virtual-machine:/srv/ftp/pub/file1# systemctl stop ufw
+root@student7-virtual-machine:/srv/ftp/pub/file1# ^C
+root@student7-virtual-machine:/srv/ftp/pub/file1# 
+
